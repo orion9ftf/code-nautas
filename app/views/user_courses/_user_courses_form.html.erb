@@ -1,0 +1,18 @@
+<div class="courses">
+  <% if course.num_courses > 0 %>
+    <span class="num-courses text-muted"><%= course.num_courses %></span>&nbsp;&nbsp;&nbsp;
+  <% end %>
+  <div class="course-form">
+    <% if course.user %>
+      <%= form_tag("/likes/#{course.user_id}", method: :delete) do %>
+        <%= hidden_field_tag :course_id, course.id %>
+        <%= submit_tag "<3", class: "btn btn-primary" %>
+      <% end %>
+    <% else %>
+      <%= form_for user.courses.build do |f| %>
+        <%= hidden_field_tag :course_id, course.id %>
+        <%= f.submit "<3", class: "btn btn-outline-secondary" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,12 +1,35 @@
 <div id="<%= dom_id user %>">
-  <p>
-    <strong>Username:</strong>
-    <%= user.username %>
-  </p>
 
-  <p>
-    <strong>Courses:</strong>
-    <%#= @couses.title %>
-  </p>
+<% @users.each do |user| %>
+      <div class="row justify-content-md-center">
+        <div class="col-4 mt-4">
+          <div class="card text-center shadow mb-5 bg-body rounded">
+            <div class="card-body">
+              <h5 class="card-title">Usuario: <%= link_to user.username, course_path(user), class: "text-success" %></h5>
+                <p class="card-text"><%= pluralize(user.courses.count, 'course') %></p>
+            </div>
+              <div id="courses">
+                <div class="card-text">
+                  <% @courses.each do |course| %>
+                    <p class="card-text"><%= render course %></p>
+                    <p class="card-text"><%#= pluralize(course.users.count, 'user' ) %></p>
+                      <% if course == course %>
+                        <%= button_to 'Olvidar curso', user_courses_destroy_courses_path, method: :delete, class: 'btn btn-warning' %>
+                      <% else %>
+                        <%= button_to 'Añadir curso', user_courses_add_courses_path(course.add_courses)	, class: 'btn btn-primary' %>
+                        <%= link_to 'Add Course', @course, class: 'btn btn-warning' %>
+                      <% end %>
+                    <hr>
+                  <% end %>
+                </div>
+              </div>
+            <div class="card-footer text-muted">
+              <small>Created <%= time_ago_in_words(user.created_at) %> ago,
+              edited <%= time_ago_in_words(user.updated_at) %> ago </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
 </div>

@@ -12,4 +12,12 @@ class User < ApplicationRecord
         Course.find_by(user_id: id, course_id: course.id).destroy
     end
 
+    def add_courses_two(user_id, course_id)
+        course = Course.find(course_id)
+
+        if course && course.exist? > 0
+            user_course.create(course_id: course.id, user_id: user)
+        end
+    end
+
 end

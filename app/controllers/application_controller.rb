@@ -6,5 +6,4 @@ class ApplicationController < ActionController::Base
         end
     end
 end
-https://empieza.desafiolatam.com/cohorts/1072/sections/23825/activities/31278/items/176979
 

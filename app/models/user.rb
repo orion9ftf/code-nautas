@@ -4,19 +4,31 @@ class User < ApplicationRecord
 
     validates :username, presence: true
 
-    def add_course(course)
+    def self.add_course(course)
         course.courses.create(user_id: id)
     end
 
-    def undo_course(course)
+    def self.undo_course(course)
         Course.find_by(user_id: id, course_id: course.id).destroy
     end
 
-    def add_courses_two(user_id, course_id)
+    def self.add_courses_two(user_id, course_id)
         course = Course.find(course_id)
 
         if course && course.exist? > 0
             user_course.create(course_id: course.id, user_id: user)
+        end
+    end
+
+    def self.count_courses_by_user
+        course = Course.all
+
+        if course == 'Javascript' && course.count >= 2
+            course.undo_course
+        elsif course == 'Docker' && course.count >= 2
+            course.undo_course
+        else 
+            add_course
         end
     end
 

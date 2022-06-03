@@ -13,20 +13,11 @@
                   <% @courses.each do |course| %>
                     <p class="card-text"><%= render course %></p>
                     <p class="card-text"><%= pluralize(course.users.count, 'user' ) %></p>
-                      <%# if course == course %>
-                        <%#= button_to 'Olvidar curso', user_courses_destroy_courses_path, method: :delete, class: 'btn btn-warning' %>
-                      <%# else %>
-                        <%#= button_to 'Añadir curso', user_courses_add_courses_path(course.add_courses)	, class: 'btn btn-primary' %>
-                        <%#= link_to 'Add Course', @course, class: 'btn btn-warning' %>
-                      
-                      <%# Probando el add_courses %>
-                      <%= form_for :course, url: courses_path, method: :put do |f| %>
-                        <%= f.hidden_field :course_id, value: course.id %>
-                        <%= f.hidden_field :user, value: 'Uriel' %>
-                        <%= f.submit 'Añadir curso', class: 'btn btn-info btn-sm' %>
-                      <% end %>
-
-                      <%# end %>
+                      <% if User.last.courses == Course.find_by(title: 'JAVA') %>
+                       'hola'
+                       <% else %>
+                       <%= link_to 'Añadir Curso', @course, class: 'btn btn-warning btn-sm' %>
+                       <% end %>
                     <hr>
                   <% end %>
                 </div>

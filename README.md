@@ -1,5 +1,17 @@
 # CodesNautas
 
+Correr el Proyecto:
+
+1.- `$ git clone git@github.com:orion9ftf/code-nautas.git`
+
+2.- `$ bundle install`
+
+3.- `$ rails db:drop db:create db:migrate db:seed`
+
+4.- `$ rails s`
+
+
+### Crear Proyecto
 
 $ rails new codes-nautas -d postgresql
 
